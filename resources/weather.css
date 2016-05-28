@@ -2,9 +2,9 @@ body, html {
   margin: 0; }
 
 md-content {
-  width: 450px;
-  margin: 16px;
-  padding: 16px; }
+  width: 600px;
+  margin: 1px;
+  padding: 1px; }
   md-content .demo-fieldset {
     border-style: solid;
     border-width: 1px;
