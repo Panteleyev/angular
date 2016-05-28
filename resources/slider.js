@@ -22,10 +22,10 @@
       var result;
       if (this.data.slides.length > 0) {
         result = $filter('date')(this.currentDate, 'dd-MM-yyyy HH:mm:ss');
-        if (this.exists('Min temperature', this.data.selectedDefault))  result += '\tMin t: ' + this.data.slides[this.currentCadre].minTemperature + '°C';
-        if (this.exists('Max temperature', this.data.selectedDefault))  result += '\tMax t: ' + this.data.slides[this.currentCadre].maxTemperature + '°C';
-        if (this.exists('Avg temperature', this.data.selectedDefault))  result += '\tAvg t: ' + (this.data.slides[this.currentCadre].maxTemperature + this.data.slides[this.currentCadre].minTemperature) / 2 + '°C';
-        if (this.exists('Wind', this.data.selectedDefault))             result += '\ttWind: ' + this.data.slides[this.currentCadre].wind + 'km/h';
+        if (this.exists('Min temperature', this.data.selectedDefault))  result += '\tMin t: ' + this.data.slides[this.currentCadre].minTemperature + ' °C.';
+        if (this.exists('Max temperature', this.data.selectedDefault))  result += '\tMax t: ' + this.data.slides[this.currentCadre].maxTemperature + ' °C.';
+        if (this.exists('Avg temperature', this.data.selectedDefault))  result += '\tAvg t: ' + (this.data.slides[this.currentCadre].maxTemperature + this.data.slides[this.currentCadre].minTemperature) / 2 + ' °C.';
+        if (this.exists('Wind', this.data.selectedDefault))             result += '\tWind: ' + this.data.slides[this.currentCadre].wind + ' km/h.';
         console.log(result);
       }
     };

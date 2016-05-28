@@ -89,12 +89,12 @@
         <div data-ng-repeat="(i, slide) in slider.data.slides" data-ng-show="i == slider.currentCadre">
           <p>{{slider.currentDate | date:'dd-MM-yyyy HH:mm:ss'}}</p>
           <p data-ng-show="slider.exists('Min temperature', slider.data.selectedDefault)">Min temperature:
-            {{slide.minTemperature}}°C</p>
+            {{slide.minTemperature}} °C</p>
           <p data-ng-show="slider.exists('Max temperature', slider.data.selectedDefault)">Max temperature:
-            {{slide.maxTemperature}}°C</p>
+            {{slide.maxTemperature}} °C</p>
           <p data-ng-show="slider.exists('Avg temperature', slider.data.selectedDefault)">Avg temperature:
-            {{(slide.minTemperature + slide.maxTemperature)/2}}°C</p>
-          <p data-ng-show="slider.exists('Wind', slider.data.selectedDefault)">Wind: {{slide.wind}}km/h</p>
+            {{(slide.minTemperature + slide.maxTemperature)/2}} °C</p>
+          <p data-ng-show="slider.exists('Wind', slider.data.selectedDefault)">Wind: {{slide.wind}} km/h</p>
         </div>
       </fieldset>
 
