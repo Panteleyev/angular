@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <title>Weather by Gleb Panteleev / v.1</title>
+  <link rel="stylesheet" href="resources/slider.css">
+
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet"
+        href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+  <script type="text/javascript" src="resources/slider.js"></script>
+</head>
+<body data-ng-app="slider" data-ng-controller="SliderController as slider" ng-cloak>
+<section layout="row" layout-align="center center">
+  <md-content>
+    <form name="weatherForm" novalidate>
+      <fieldset class="demo-fieldset">
+        <legend class="demo-legend">Settings:</legend>
+        <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+            <md-checkbox aria-label="Select All" ng-checked="slider.isChecked()"
+                         md-indeterminate="slider.isIndeterminate()" ng-click="slider.toggleAll()">
+              <span ng-show="slider.isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+          <div class="demo-select-all-checkboxes" flex="100" ng-repeat="option in slider.data.options">
+            <md-checkbox ng-checked="slider.exists(option, slider.data.selectedDefault)"
+                         ng-click="slider.toggle(option, slider.data.selectedDefault)">
+              {{ option }}
+            </md-checkbox>
+          </div>
+        </div>
+        <div layout>
+          <md-input-container>
+            <label>Step</label>
+            <md-select ng-model="slider.hourStepSelected" aria-label="Please select step" required>
+              <md-option ng-repeat="steps in slider.data.hourStepVariants"
+                         ng-selected="steps.value == slider.data.hourStepDefault" value="{{steps.value}}">
+                {{steps.label}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Delay (ms)</label>
+            <input required ng-change="slider.onChangeDelay()" type="number" step="{{slider.data.stepDelay}}"
+                   min="{{slider.data.minDelay}}" max="{{slider.data.maxDelay}}" ng-model="slider.data.delay"/>
+          </md-input-container>
+        </div>
+      </fieldset>
+
+      <div layout>
+        <md-button class="md-raised md-primary" ng-disabled="!weatherForm.$valid || slider.currentCadre <= 0"
+                   ng-click="weatherForm.$valid && slider.rewind()">rewind
+        </md-button>
+        <md-slider flex min="0" max="{{(slider.data.slides.length-1)}}" ng-model="slider.currentCadre"
+                   aria-label="rating" class="md-warn" ng-disabled="!weatherForm.$valid"></md-slider>
+        <md-button class="md-raised md-primary"
+                   ng-disabled="!weatherForm.$valid || slider.currentCadre >= slider.data.slides.length - 1"
+                   ng-click="weatherForm.$valid && slider.forward()">forward
+        </md-button>
+      </div>
+      <div layout layout-align="center center">
+        <md-button class="md-raised md-primary" ng-show="slider.data.slides.length == 0"
+                   ng-click="slider.loadData('resources/slides.json')">Load
+        </md-button>
+        <md-button class="md-raised md-primary"
+                   ng-disabled="!weatherForm.$valid || slider.currentCadre >= slider.data.slides.length - 1 || slider.autoplay"
+                   ng-click="weatherForm.$valid && slider.play(true)">play
+        </md-button>
+        <md-button class="md-raised md-primary" ng-disabled="!slider.autoplay"
+                   ng-click="weatherForm.$valid && slider.pause()">pause
+        </md-button>
+      </div>
+
+      <fieldset class="demo-fieldset" data-ng-show="slider.exists('View', slider.data.selectedDefault)">
+        <legend class="demo-legend">View:</legend>
+        <div data-ng-repeat="(i, slide) in slider.data.slides" data-ng-show="i == slider.currentCadre">
+          <p>{{slider.currentDate | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+          <p data-ng-show="slider.exists('Min temperature', slider.data.selectedDefault)">Min temperature:
+            {{slide.minTemperature}}°C</p>
+          <p data-ng-show="slider.exists('Max temperature', slider.data.selectedDefault)">Max temperature:
+            {{slide.maxTemperature}}°C</p>
+          <p data-ng-show="slider.exists('Avg temperature', slider.data.selectedDefault)">Avg temperature:
+            {{(slide.minTemperature + slide.maxTemperature)/2}}°C</p>
+          <p data-ng-show="slider.exists('Wind', slider.data.selectedDefault)">Wind: {{slide.wind}}km/h</p>
+        </div>
+      </fieldset>
+
+    </form>
+  </md-content>
+</section>
+</body>
+</html>

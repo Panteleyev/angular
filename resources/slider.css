@@ -1,0 +1,17 @@
+body, html {
+  margin: 0; }
+
+md-content {
+  width: 450px;
+  margin: 16px;
+  padding: 16px; }
+  md-content .demo-fieldset {
+    border-style: solid;
+    border-width: 1px;
+    height: 100%; }
+  md-content .demo-select-all-checkboxes {
+    padding-left: 30px; }
+  md-content md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: rgba(255, 255, 255, 0.7) !important; }
+
+/*# sourceMappingURL=slider.css.map */
