@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Weather by Gleb Panteleev / v.1.3</title>
+  <title>Weather by Gleb Panteleev / v.1.4</title>
   <link rel="stylesheet" href="resources/weather.css">
 
   <!-- Angular Material style sheet -->
@@ -68,7 +68,7 @@
                    ng-click="weatherForm.$valid && slider.rewind()">rewind
         </md-button>
         <md-slider flex min="0" max="{{(slider.data.slides.length-1)}}" ng-model="slider.currentCadre"
-                   aria-label="rating" class="md-warn" ng-disabled="!weatherForm.$valid"></md-slider>
+                   aria-label="rating" class="md-primary" ng-disabled="!weatherForm.$valid"></md-slider>
         <md-button class="md-raised md-primary"
                    ng-disabled="!weatherForm.$valid || slider.currentCadre >= slider.data.slides.length - 1"
                    ng-click="weatherForm.$valid && slider.forward()">forward

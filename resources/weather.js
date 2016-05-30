@@ -3,7 +3,10 @@
   var app = angular.module('slider', ['ngMaterial'])
                    .config(function ($mdThemingProvider) {
                      $mdThemingProvider.theme('default')
-                                       .dark();
+                                       .dark()
+                                       .warnPalette('orange')
+                                       .primaryPalette('teal')
+                                       .accentPalette('blue-grey');
                    });
 
   app.controller('SliderController', ['$timeout', '$filter', '$http', function ($timeout, $filter, $http) {
